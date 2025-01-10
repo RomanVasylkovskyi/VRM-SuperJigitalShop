@@ -56,7 +56,7 @@ ROOT_URLCONF = 'JigitalShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR /'JigitalShop/templates',BASE_DIR /'MainPage/templates',BASE_DIR /'Store/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

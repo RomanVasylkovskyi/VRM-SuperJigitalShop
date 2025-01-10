@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 import MainPage.views as main_views
+import Store.views as store_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', main_views.main_page_view),
+    path('admin/', admin.site.urls , name='admin'),
+    path('', main_views.main_page_view, name='main_page_view'),
+    path('store', store_views.item_list, name='store'),
+    path('product/<int:id>/', store_views.product_detail, name='product_detail'),
     
 ]

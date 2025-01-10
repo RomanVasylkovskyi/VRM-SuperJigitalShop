@@ -1,0 +1,24 @@
+{% extends "main/layout.html" %}
+
+ {% block title %}Store{% endblock %}
+
+{% block headcode %}
+    {% load static %}
+{% endblock %}
+
+
+{% block content %}
+    {% load static %}
+    {% for item in items %}
+        <div style="border:2px solid black;margin: 25px; padding: 25px"  >
+            <img src="{{ item.photo.url }}" alt="{{ item.name }}" style="max-width: 200px;">
+            <h1>{{ item.name }} - {{ item.price }} грн</h1>
+            <h2>Рейтинг: {{ item.rate }}</h2>
+            <a style="height: 75px;width: 200px" href="{% url 'product_detail' item.id %}">Детальніше</a>
+        </div>
+    {% empty %}
+        <li>No products available.</li>
+    {% endfor %}
+
+{% endblock %}
+

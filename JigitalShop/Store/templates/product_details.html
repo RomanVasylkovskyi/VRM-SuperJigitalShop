@@ -1,20 +1,39 @@
 {% extends "main/layout.html" %}
 
- {% block title %}Details{% endblock %}
-
-{% block headcode %}
-    {% load static %}
-{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% block content %}
-    {% load static %}
-        <div style="border:2px solid black;margin: 25px; padding: 25px"  >
-            <img src="{{ product.photo.url }}" alt="{{ product.name }}" style="max-width: 200px;">
-            <h1>{{ product.name }} - {{ product.price }} грн</h1>
-            <h2>Рейтинг: {{ product.rate }}</h2>
-            <p class="description">{{ product.description }}</p>
-            <p class="manufacturer">Виробник: {{ product.manufacturer }}</p>
-            <p class="rating">Рейтинг: {{ product.rate }}</p>
-        </div>
-{% endblock %}
+<div style="border:2px solid black;margin: 25px; padding: 25px">
+    <img src="{{ product.photo.url }}" alt="{{ product.name }}" style="max-width: 200px;">
+    <h1>{{ product.name }} - {{ product.price }} грн</h1>
+    <h2>Рейтинг: {{ product.rate }}</h2>
+    <p class="description">{{ product.description }}</p>
+    <p class="manufacturer">Виробник: {{ product.manufacturer }}</p>
+</div>
 
+<!-- Список відгуків -->
+<h2>Відгуки:</h2>
+{% if reviews %}
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.created_at }}:</strong> {{ review.text }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Немає відгуків.</p>
+{% endif %}
+
+<!-- Форма для додавання відгуку -->
+<h3>Додати відгук:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Відправити</button>
+</form>
+
+<!-- CRUD кнопки -->
+<a href="{% url 'edit_product' product.id %}" style="margin-right: 10px;">Редагувати продукт</a>
+<a href="{% url 'delete_product' product.id %}" style="color: red;">Видалити продукт</a>
+{% endblock %}

@@ -15,7 +15,7 @@ class Command(BaseCommand):
         faker = Faker('uk_UA')
 
         # Створення 10 тестових записів
-        for _ in range(100):
+        for _ in range(10):
             Product.objects.create(
                 name=faker.word().capitalize(),
                 price=random.uniform(10.0, 100.0),

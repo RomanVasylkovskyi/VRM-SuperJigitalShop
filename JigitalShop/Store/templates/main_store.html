@@ -1,24 +1,21 @@
 {% extends "main/layout.html" %}
 
- {% block title %}Store{% endblock %}
-
-{% block headcode %}
-    {% load static %}
-{% endblock %}
-
+{% block title %}Store{% endblock %}
 
 {% block content %}
-    {% load static %}
+<h1>Список продуктів</h1>
+<a href="{% url 'add_product' %}" style="margin-bottom: 20px; display: inline-block;">Додати новий продукт</a>
+
+<div>
     {% for item in items %}
-        <div style="border:2px solid black;margin: 25px; padding: 25px"  >
+        <div style="border:2px solid black;margin: 25px; padding: 25px">
             <img src="{{ item.photo.url }}" alt="{{ item.name }}" style="max-width: 200px;">
             <h1>{{ item.name }} - {{ item.price }} грн</h1>
             <h2>Рейтинг: {{ item.rate }}</h2>
-            <a style="height: 75px;width: 200px" href="{% url 'product_detail' item.id %}">Детальніше</a>
+            <a href="{% url 'product_detail' item.id %}">Детальніше</a>
         </div>
     {% empty %}
-        <li>No products available.</li>
+        <p>Немає доступних продуктів.</p>
     {% endfor %}
-
+</div>
 {% endblock %}
-

@@ -20,10 +20,12 @@ from django.urls import path
 import MainPage.views as main_views
 import Store.views as store_views
 
+app_name = 'store'
+
 urlpatterns = [
     path('admin/', admin.site.urls , name='admin'),
     path('', main_views.main_page_view, name='main_page_view'),
     path('store', store_views.item_list, name='store'),
     path('product/<int:id>/', store_views.product_detail, name='product_detail'),
-    
+    path('add/', store_views.add_product, name='add_product'),
 ]

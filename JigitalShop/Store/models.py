@@ -18,7 +18,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE, verbose_name="Товар")
     text = models.TextField(verbose_name="Текст відгуку")

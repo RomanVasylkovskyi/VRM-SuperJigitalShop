@@ -1,21 +1,33 @@
 {% extends "main/layout.html" %}
+{% load static %}
 
 {% block title %}Store{% endblock %}
 
-{% block content %}
-<h1>Список продуктів</h1>
-<a href="{% url 'add_product' %}" style="margin-bottom: 20px; display: inline-block;">Додати новий продукт</a>
+{% block headcode %}
+    <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+    <link rel="icon" href="{% static 'images/basket.png' %}" type="image/x-icon">
+{% endblock %}
 
-<div>
-    {% for item in items %}
-        <div style="border:2px solid black;margin: 25px; padding: 25px">
-            <img src="{{ item.photo.url }}" alt="{{ item.name }}" style="max-width: 200px;">
-            <h1>{{ item.name }} - {{ item.price }} грн</h1>
-            <h2>Рейтинг: {{ item.rate }}</h2>
-            <a href="{% url 'product_detail' item.id %}">Детальніше</a>
+{% block content %}
+    <div class="store_plate">
+        <nav class="store_van"></nav>
+        <div class="item_list">
+            {% for item in items %}
+                <div class="item_product">
+                    <img
+                            class="product_img"
+                            src="{{ item.photo }}"
+                            alt="{{ item.name }}"
+                            onerror="this.onerror=null; this.src='{% static 'images/noimages.png' %}';">
+
+                    <h1 class="product_name">{{ item.name }}</h1>
+                    <h2 class="product_description">{{ item.price }} грн</h2>
+                    <h2 class="product_description">Рейтинг: {{ item.rate }}</h2>
+                    <a class="item_detail_btn" href="{% url 'product_detail' item.id %}">Детальніше</a>
+                </div>
+            {% empty %}
+                <p>Немає доступних продуктів.</p>
+            {% endfor %}
         </div>
-    {% empty %}
-        <p>Немає доступних продуктів.</p>
-    {% endfor %}
-</div>
+    </div>
 {% endblock %}

@@ -1,7 +1,9 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from Store.models import Product
 from Store.form import ProductForm, ReviewForm
-
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
 def item_list(request):
@@ -32,6 +34,21 @@ def add_product(request):
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
 
+def admin_store(request):
+    items = Product.objects.all()
+    return render(request, 'edit_store.html', {'items': items})
+
+
+
+def delete_product(request,pk ):
+    try:
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        messages.success(request, 'Продукт успішно видалено!')
+    except Exception as e:
+        print(e)
+        messages.error(request, f'Помилка при видаленні товару: {str(e)}')
+    return redirect('edit_store')
 # def edit_product(request, id):
 #     product = get_object_or_404(Product, id=id)
 #     if request.method == 'POST':
@@ -43,9 +60,9 @@ def add_product(request):
 #         form = ProductForm(instance=product)
 #     return render(request, 'edit_product.html', {'form': form})
 
-# def delete_product(request, id):
+# def delete_product.js(request, id):
 #     product = get_object_or_404(Product, id=id)
 #     if request.method == 'POST':
 #         product.delete()
 #         return redirect('store:main_page_view')
-#     return render(request, 'delete_product.html', {'product': product})
+#     return render(request, 'delete_product.js.html', {'product': product})

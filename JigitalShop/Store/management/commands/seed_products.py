@@ -19,7 +19,7 @@ class Command(BaseCommand):
             Product.objects.create(
                 name=faker.word().capitalize(),
                 price=random.uniform(10.0, 100.0),
-                photo='photos/example.jpg',
+                photo='images/noimages.jpg',
                 description=faker.text(),
                 manufacturer=faker.company(),
                 rate=random.uniform(1.0, 5.0),

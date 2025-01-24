@@ -10,30 +10,4 @@
     <p class="description">{{ product.description }}</p>
     <p class="manufacturer">Виробник: {{ product.manufacturer }}</p>
 </div>
-
-<!-- Список відгуків -->
-<h2>Відгуки:</h2>
-{% if reviews %}
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <strong>{{ review.created_at }}:</strong> {{ review.text }}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Немає відгуків.</p>
-{% endif %}
-
-<!-- Форма для додавання відгуку -->
-<h3>Додати відгук:</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Відправити</button>
-</form>
-
-<!-- CRUD кнопки -->
-<a href="{% url 'edit_product' product.id %}" style="margin-right: 10px;">Редагувати продукт</a>
-<a href="{% url 'delete_product' product.id %}" style="color: red;">Видалити продукт</a>
 {% endblock %}

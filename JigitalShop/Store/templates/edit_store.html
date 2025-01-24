@@ -1,0 +1,45 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Edit store{% endblock %}
+
+{% block headcode %}
+    <link rel="stylesheet" href="{% static 'css/edit_store.css' %}">
+    <link rel="icon" href="{% static 'images/gear.png' %}" type="image/x-icon">
+{% endblock %}
+
+{% block content %}
+    <div class="store_plate">
+        <nav class="store_van">
+            <a href="{% url 'add_product' %}" style="margin-bottom: 20px; display: inline-block;">
+                <h1>Додати продукт +</h1>
+            </a>
+        </nav>
+        <div class="item_list">
+            {% for item in items %}
+                <div class="item_product">
+                    <img
+                            class="product_img"
+                            src="{{ item.photo }}"
+                            alt="{{ item.name }}"
+                            onerror="this.onerror=null; this.src='{% static 'images/noimages.png' %}';">
+                    <div class="product_info">
+                        <h1 class="product_name">{{ item.name }}</h1>
+                        <h1 class="product_description">{{ item.price }} грн</h1>
+                        <h1 class="product_description">Рейтинг: {{ item.rate }}</h1>
+                    </div>
+                    <div>
+                        <a class="item_btn" href="#">
+                            <img src="{% static 'images/gear.png' %}" alt="Description">
+                        </a>
+                        <a class="item_btn delete_btn" data-id="{{ item.id }}" href="{% url 'delete_item' item.id %}">
+                            <img  src="{% static 'images/trash.png' %}" alt="Description">
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Немає доступних продуктів.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

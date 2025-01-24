@@ -1,12 +1,48 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+
+{% block headcode %}
+    <link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+    <link rel="icon" href="{% static 'images/plus.png' %}" type="image/x-icon">
+{% endblock %}
+
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Додати продукт</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Додати</button>
-    </form>
-</div>
+    <div class="container mt-5">
+        <h2>Додати продукт</h2>
+        <form method="post" enctype="multipart/form-data" class="add-product-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Назва продукту</label>
+                <input type="text" id="id_name" name="name" class="form-control" placeholder="Введіть назву продукту">
+            </div>
+            <div class="form-group">
+                <label for="id_price">Ціна</label>
+                <input type="number" step="0.01" id="id_price" name="price" class="form-control"
+                       placeholder="Введіть ціну (грн)">
+            </div>
+            <div class="form-group">
+                <label for="id_rate">Рейтинг (1.0 - 5.0)</label>
+                <input type="number" step="0.1" id="id_rate" name="rate" class="form-control"
+                       placeholder="Введіть рейтинг продукту">
+            </div>
+            <div class="form-group">
+                <label for="id_manufacturer">Виробник</label>
+                <input type="text" id="id_manufacturer" name="manufacturer" class="form-control"
+                       placeholder="Введіть назву виробника">
+            </div>
+            <div class="form-group">
+                <label for="id_photo">Фото</label>
+                <input type="file" id="id_photo" name="photo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="id_description">Опис</label>
+                <textarea id="id_description" name="description" class="form-control"
+                          placeholder="Введіть опис продукту"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Додати</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

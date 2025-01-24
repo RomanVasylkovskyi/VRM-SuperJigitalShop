@@ -29,7 +29,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('store')
+            return redirect('edit_store')
     else:
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})

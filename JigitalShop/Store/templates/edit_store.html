@@ -9,12 +9,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="store_plate">
-        <nav class="store_van">
+            <nav class="store_van">
             <a href="{% url 'add_product' %}" style="margin-bottom: 20px; display: inline-block;">
                 <h1>Додати продукт +</h1>
             </a>
         </nav>
+    <div class="store_plate">
         <div class="item_list">
             {% for item in items %}
                 <div class="item_product">

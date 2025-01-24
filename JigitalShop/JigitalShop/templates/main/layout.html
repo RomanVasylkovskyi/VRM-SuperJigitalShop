@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {% block headcode %}
     {% endblock %}
     <title>
@@ -18,10 +18,10 @@
     <img src="{% static 'images/logo.png' %}" alt="home" id="homeimg">
     <nav>
         <ul class="nav-links">
-            <li><a href="#">1</a></li>
+            <li><a href="{% url 'store' %}">Store</a></li>
             <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
+            <li><a href="#">Top-100</a></li>
+            <li><a href="{% url 'edit_store' %}">Edit Store</a></li>
         </ul>
     </nav>
     <div class="extra-button">☰</div>

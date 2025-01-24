@@ -1,0 +1,110 @@
+/* Add Product Form - edit_store.css */
+
+/* Container Styling */
+.container {
+    background-color: #343440;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: 50px auto;
+    color: #ffffff;
+}
+
+.container h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 28px;
+    border-bottom: 2px solid #373747;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Form Styling */
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #bbbbbb;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #505050;
+    border-radius: 5px;
+    background-color: #272733;
+    color: #ffffff;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #373747;
+    box-shadow: 0 0 5px rgba(55, 55, 71, 0.8);
+}
+
+textarea.form-control {
+    height: 120px;
+    resize: vertical;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    background-color: #373747;
+    color: #ffffff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.form-actions button:hover {
+    background-color: #505050;
+    transform: translateY(-2px);
+}
+
+.form-actions button:active {
+    transform: translateY(0);
+}
+
+/* Error Messages */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #ff6b6b;
+    font-size: 14px;
+}
+
+.errorlist li {
+    margin-bottom: 5px;
+}
+
+/* File Input */
+input[type="file"] {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+}

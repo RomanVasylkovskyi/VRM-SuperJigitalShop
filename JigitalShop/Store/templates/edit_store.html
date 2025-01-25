@@ -29,7 +29,7 @@
                         <h1 class="product_description">Рейтинг: {{ item.rate }}</h1>
                     </div>
                     <div>
-                        <a class="item_btn" href="#">
+                        <a class="item_btn edit_btn" data-id="{{ item.id }}" href="{% url 'edit_product' item.id %}">
                             <img src="{% static 'images/gear.png' %}" alt="Description">
                         </a>
                         <a class="item_btn delete_btn" data-id="{{ item.id }}" href="{% url 'delete_item' item.id %}">

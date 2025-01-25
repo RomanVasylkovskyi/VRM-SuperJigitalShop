@@ -10,6 +10,42 @@ def item_list(request):
     items = Product.objects.all()
     return render(request, 'main_store.html', {'items': items})
 
+def admin_store(request):
+    items = Product.objects.all()
+    return render(request, 'edit_store.html', {'items': items})
+
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('edit_store')
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})
+
+def edit_product(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('edit_store')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'edit_product.html', {'form': form, 'product': product})
+
+def delete_product(request,pk ):
+    try:
+        product = get_object_or_404(Product, id=pk)
+        product.delete()
+        messages.success(request, 'Продукт успішно видалено!')
+    except Exception as e:
+        print(e)
+        messages.error(request, f'Помилка при видаленні товару: {str(e)}')
+    return redirect('edit_store')
+
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
     reviews = product.reviews.all()
@@ -24,31 +60,6 @@ def product_detail(request, id):
         form = ReviewForm()
     return render(request, 'product_details.html', {'product': product, 'reviews': reviews, 'form': form})
 
-def add_product(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('edit_store')
-    else:
-        form = ProductForm()
-    return render(request, 'add_product.html', {'form': form})
-
-def admin_store(request):
-    items = Product.objects.all()
-    return render(request, 'edit_store.html', {'items': items})
-
-
-
-def delete_product(request,pk ):
-    try:
-        product = get_object_or_404(Product, id=pk)
-        product.delete()
-        messages.success(request, 'Продукт успішно видалено!')
-    except Exception as e:
-        print(e)
-        messages.error(request, f'Помилка при видаленні товару: {str(e)}')
-    return redirect('edit_store')
 # def edit_product(request, id):
 #     product = get_object_or_404(Product, id=id)
 #     if request.method == 'POST':

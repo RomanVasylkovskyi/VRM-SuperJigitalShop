@@ -1,13 +1,32 @@
 {% extends "main/layout.html" %}
+{% load static %}
 
 {% block title %}Details{% endblock %}
 
+{% block headcode %}
+    <link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+    <link rel="icon" href="{% static 'images/gear.png' %}" type="image/x-icon">
+{% endblock %}
+
 {% block content %}
-<div style="border:2px solid black;margin: 25px; padding: 25px">
-    <img src="{{ product.photo.url }}" alt="{{ product.name }}" style="max-width: 200px;">
-    <h1>{{ product.name }} - {{ product.price }} грн</h1>
-    <h2>Рейтинг: {{ product.rate }}</h2>
-    <p class="description">{{ product.description }}</p>
-    <p class="manufacturer">Виробник: {{ product.manufacturer }}</p>
+<div class="product-card">
+    <div class="product-image">
+        <img
+                            class="product_img"
+                            src="{{ item.photo }}"
+                            alt="{{ item.name }}"
+                            onerror="this.onerror=null; this.src='{% static 'images/noimages.png' %}';">
+    </div>
+    <div class="product-details">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <h2 class="product-price">{{ product.price }} грн</h2>
+        <h3 class="product-rating">Рейтинг: {{ product.rate }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-manufacturer">Виробник: {{ product.manufacturer }}</p>
+    </div>
+    <div class="btn">
+        <a class="btn_back" href="{% url 'store' %}">←</a>
+    </div>
 </div>
+
 {% endblock %}

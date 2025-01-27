@@ -25,7 +25,7 @@ app_name = 'store'
 urlpatterns = [
     path('admin/', admin.site.urls , name='admin'),
     path('', main_views.main_page_view, name='main_page_view'),
-    path('store', store_views.item_list, name='store'),
+    path('store', store_views.store_page, name='store'),
     path('editstore', store_views.admin_store, name='edit_store'),
 
     path('add/', store_views.add_product, name='add_product'),

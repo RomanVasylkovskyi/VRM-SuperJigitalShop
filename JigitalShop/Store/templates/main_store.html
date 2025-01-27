@@ -9,8 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="store_plate">
-        <nav class="store_van"></nav>
+<div class="store_plate">
         <div class="item_list">
             {% for item in items %}
                 <div class="item_product">
@@ -19,11 +18,14 @@
                             src="{{ item.photo }}"
                             alt="{{ item.name }}"
                             onerror="this.onerror=null; this.src='{% static 'images/noimages.png' %}';">
-
-                    <h1 class="product_name">{{ item.name }}</h1>
-                    <h2 class="product_description">{{ item.price }} грн</h2>
-                    <h2 class="product_description">Рейтинг: {{ item.rate }}</h2>
-                    <a class="item_detail_btn" href="{% url 'product_detail' item.id %}">Детальніше</a>
+                    <div class="product_info">
+                        <h1 class="product_name">{{ item.name }}</h1>
+                        <h1 class="product_description">{{ item.price }} грн</h1>
+                        <h1 class="product_description">Рейтинг: {{ item.rate }}</h1>
+                    </div>
+                    <div class="item_btn">
+                        <a class="item_detail_btn" href="{% url 'product_detail' item.id %}">Детальніше</a>
+                    </div>
                 </div>
             {% empty %}
                 <p>Немає доступних продуктів.</p>

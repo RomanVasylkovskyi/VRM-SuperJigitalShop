@@ -10,7 +10,7 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h2>Додати продукт</h2>
+        <h2>Змінити продукт</h2>
         <form method="post" enctype="multipart/form-data" class="add-product-form">
             {% csrf_token %}
             <div class="form-group">
@@ -42,7 +42,7 @@
                           placeholder="Введіть опис продукту"></textarea>
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Додати</button>
+                <button type="submit" class="btn btn-primary">Змінити</button>
             </div>
         </form>
     </div>

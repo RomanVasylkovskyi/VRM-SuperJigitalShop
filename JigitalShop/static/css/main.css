@@ -13,13 +13,23 @@ header {
     grid-template-columns: 1fr 4fr 1fr;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: rgba(52, 52, 64, 0.85); /* Прозорий фон */
     color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тінь */
+    position: sticky; /* Залишається зверху при прокручуванні */
+    top: 0;
+    z-index: 10;
 }
 
 header img {
     height: 50px;
     justify-self: start;
+    border-radius: 6px; /* Злегка округлені краї */
+    transition: transform 0.3s ease; /* Анімація при наведенні */
+}
+
+header img:hover {
+    transform: scale(1.1); /* Легке збільшення при наведенні */
 }
 
 .nav-links {

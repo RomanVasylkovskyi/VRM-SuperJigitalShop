@@ -6,14 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 
-def item_list(request):
+def store_page(request):
     items = Product.objects.all()
     return render(request, 'main_store.html', {'items': items})
 
 def admin_store(request):
     items = Product.objects.all()
     return render(request, 'edit_store.html', {'items': items})
-
 
 def add_product(request):
     if request.method == 'POST':
